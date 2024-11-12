@@ -1,0 +1,7 @@
+Flask
+torch
+pillow
+numpy
+opencv-python-headless
+pandas
+requests
