@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 def load_model():
-    # Load a lightweight object detection model, such as MobileNet-SSD
+    # Loading model
     net = cv2.dnn.readNetFromCaffe("deploy.prototxt", "mobilenet_iter_73000.caffemodel")
     return net
 
@@ -20,14 +20,14 @@ def predict(model, image):
             box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
             (startX, startY, endX, endY) = box.astype("int")
 
-            # Append result
+            
             results.append({
                 "object_id": idx,
                 "confidence": float(confidence),
                 "bounding_box": [int(startX), int(startY), int(endX), int(endY)]
             })
 
-            # Draw bounding box on image
+            
             cv2.rectangle(image, (startX, startY), (endX, endY), (255, 0, 0), 2)
 
     return results, image
